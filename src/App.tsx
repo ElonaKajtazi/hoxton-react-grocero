@@ -93,12 +93,32 @@ function App() {
   }
   const cart = getInCart();
 
-  function total() {
+  function getTotal() {
     let total = 0;
     for (let item of cart) {
       total += item.price * item.inCart;
     }
-    return total;
+    return `£${total.toFixed(2)}`;
+  }
+  const total = getTotal();
+
+  function increaseItemQuantity(item: any) {
+    const storeCopy = structuredClone(store);
+
+    //@ts-ignore
+    const match = storeCopy.find((target) => target.id === item.id);
+    match.inCart++;
+
+    setStore(storeCopy);
+  }
+  function decreaseItemQuantity(item: any) {
+    const storeCopy = structuredClone(store);
+    //@ts-ignore
+
+    const match = storeCopy.find((target) => target.id === item.id);
+    match.inCart--;
+
+    setStore(storeCopy);
   }
   return (
     <div className="App">
@@ -110,7 +130,13 @@ function App() {
               <div className="store--item-icon">
                 <img src={item.icon} />
               </div>
-              <button>Add to cart</button>
+              <button
+                onClick={function () {
+                  increaseItemQuantity(item);
+                }}
+              >
+                Add to cart
+              </button>
             </li>
           ))}
         </ul>
@@ -129,9 +155,23 @@ function App() {
                   alt={item.name}
                 />
                 <p>{item.name}</p>
-                <button className="quantity-btn remove-btn center">-</button>
+                <button
+                  className="quantity-btn remove-btn center"
+                  onClick={function () {
+                    decreaseItemQuantity(item);
+                  }}
+                >
+                  -
+                </button>
                 <span className="quantity-text center">{item.inCart}</span>
-                <button className="quantity-btn add-btn center">+</button>
+                <button
+                  className="quantity-btn add-btn center"
+                  onClick={function () {
+                    increaseItemQuantity(item);
+                  }}
+                >
+                  +
+                </button>
               </li>
             ))}
           </ul>
@@ -140,7 +180,7 @@ function App() {
         <div className="total-section">
           <h3>Total</h3>
           <div>
-            £<span className="total-price">£{total().toFixed(2)}</span>
+            <span className="total-price">{total}</span>
           </div>
         </div>
       </main>
