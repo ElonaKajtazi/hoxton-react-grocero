@@ -1,6 +1,17 @@
 import { useState } from "react";
 import "./index.css";
 import "./App.css";
+// Instructions
+// Using the original JS version of Grocero as a reference, create a React version of it that works in exactly the same way.
+
+// Tips if you're converting your old code
+// - Start a new React TS project ✅
+// - Run your original Grocero app ✅
+// - Open it in the browser ✅
+// - Copy its HTML, put it all in App.js, fix the JSX, and copy the styles ✅
+// - Break the app down into its components
+// - Create state and pass props down as needed to make this app work just like it did in the JS version
+// - Again, no need to reinvent the wheel: if you have logic and data that you can just copy over from the original exercise and save you time - do it. Just be sure you understand all the code you copy over!
 
 function App() {
   //What items are available to buy?
@@ -16,14 +27,14 @@ function App() {
       id: 2,
       name: "carrot",
       price: 0.3,
-      inCart: 0,
+      inCart: 2,
       icon: "assets/icons/002-carrot.svg",
     },
     {
       id: 3,
       name: "apple",
       price: 0.25,
-      inCart: 0,
+      inCart: 1,
       icon: "assets/icons/003-apple.svg",
     },
     {
@@ -44,7 +55,7 @@ function App() {
       id: 6,
       name: "banana",
       price: 0.55,
-      inCart: 0,
+      inCart: 2,
       icon: "assets/icons/006-bananas.svg",
     },
     {
@@ -77,6 +88,10 @@ function App() {
     },
   ]);
   //What items are in the cart?
+  function getInCart() {
+    return store.filter((item) => item.inCart > 0);
+  }
+  const cart = getInCart();
   return (
     <div className="App">
       <header id="store">
@@ -98,72 +113,19 @@ function App() {
 
         <div className="cart--item-list-container">
           <ul className="item-list cart--item-list">
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/001-beetroot.svg"
-                alt="beetroot"
-              />
-              <p>beetroot</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">4</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/002-carrot.svg"
-                alt="carrot"
-              />
-              <p>carrot</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">1</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/003-apple.svg"
-                alt="apple"
-              />
-              <p>apple</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">1</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/004-apricot.svg"
-                alt="apricot"
-              />
-              <p>apricot</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">1</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/009-blueberry.svg"
-                alt="blueberry"
-              />
-              <p>blueberry</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">1</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
-            <li>
-              <img
-                className="cart--item-icon"
-                src="assets/icons/010-eggplant.svg"
-                alt="eggplant"
-              />
-              <p>eggplant</p>
-              <button className="quantity-btn remove-btn center">-</button>
-              <span className="quantity-text center">1</span>
-              <button className="quantity-btn add-btn center">+</button>
-            </li>
+            {cart.map((item) => (
+              <li>
+                <img
+                  className="cart--item-icon"
+                  src={item.icon}
+                  alt={item.name}
+                />
+                <p>{item.name}</p>
+                <button className="quantity-btn remove-btn center">-</button>
+                <span className="quantity-text center">{item.inCart}</span>
+                <button className="quantity-btn add-btn center">+</button>
+              </li>
+            ))}
           </ul>
         </div>
 
