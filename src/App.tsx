@@ -11,7 +11,7 @@ import { Cart } from "./components/Cart";
 // - Run your original Grocero app ✅
 // - Open it in the browser ✅
 // - Copy its HTML, put it all in App.js, fix the JSX, and copy the styles ✅
-// - Break the app down into its components
+// - Break the app down into its components ✅
 // - Create state and pass props down as needed to make this app work just like it did in the JS version ✅
 // - Again, no need to reinvent the wheel: if you have logic and data that you can just copy over from the original exercise and save you time - do it. Just be sure you understand all the code you copy over! ✅
 export type StoreItemType = {
