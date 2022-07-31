@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./index.css";
 import "./App.css";
+import { Store } from "./components/Store";
+import { Cart } from "./components/Cart";
 // Instructions
 // Using the original JS version of Grocero as a reference, create a React version of it that works in exactly the same way.
 
@@ -10,8 +12,8 @@ import "./App.css";
 // - Open it in the browser ✅
 // - Copy its HTML, put it all in App.js, fix the JSX, and copy the styles ✅
 // - Break the app down into its components
-// - Create state and pass props down as needed to make this app work just like it did in the JS version
-// - Again, no need to reinvent the wheel: if you have logic and data that you can just copy over from the original exercise and save you time - do it. Just be sure you understand all the code you copy over!
+// - Create state and pass props down as needed to make this app work just like it did in the JS version ✅
+// - Again, no need to reinvent the wheel: if you have logic and data that you can just copy over from the original exercise and save you time - do it. Just be sure you understand all the code you copy over! ✅
 
 function App() {
   //What items are available to buy?
@@ -122,68 +124,14 @@ function App() {
   }
   return (
     <div className="App">
-      <header id="store">
-        <h1>Grocero</h1>
-        <ul className="item-list store--item-list">
-          {store.map((item) => (
-            <li>
-              <div className="store--item-icon">
-                <img src={item.icon} />
-              </div>
-              <button
-                onClick={function () {
-                  increaseItemQuantity(item);
-                }}
-              >
-                Add to cart
-              </button>
-            </li>
-          ))}
-        </ul>
-      </header>
+      <Store store={store} increaseItemQuantity={increaseItemQuantity} />
 
-      <main id="cart">
-        <h2>Your Cart</h2>
-
-        <div className="cart--item-list-container">
-          <ul className="item-list cart--item-list">
-            {cart.map((item) => (
-              <li>
-                <img
-                  className="cart--item-icon"
-                  src={item.icon}
-                  alt={item.name}
-                />
-                <p>{item.name}</p>
-                <button
-                  className="quantity-btn remove-btn center"
-                  onClick={function () {
-                    decreaseItemQuantity(item);
-                  }}
-                >
-                  -
-                </button>
-                <span className="quantity-text center">{item.inCart}</span>
-                <button
-                  className="quantity-btn add-btn center"
-                  onClick={function () {
-                    increaseItemQuantity(item);
-                  }}
-                >
-                  +
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="total-section">
-          <h3>Total</h3>
-          <div>
-            <span className="total-price">{total}</span>
-          </div>
-        </div>
-      </main>
+      <Cart
+        cart={cart}
+        decreaseItemQuantity={decreaseItemQuantity}
+        increaseItemQuantity={increaseItemQuantity}
+        total={total}
+      />
     </div>
   );
 }
