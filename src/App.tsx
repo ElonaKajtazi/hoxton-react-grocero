@@ -14,7 +14,14 @@ import { Cart } from "./components/Cart";
 // - Break the app down into its components
 // - Create state and pass props down as needed to make this app work just like it did in the JS version ✅
 // - Again, no need to reinvent the wheel: if you have logic and data that you can just copy over from the original exercise and save you time - do it. Just be sure you understand all the code you copy over! ✅
-
+export type StoreItemType = {
+  id: number;
+  name: string;
+  price: number;
+  inCart: number;
+  icon: string;
+};
+export type StoreType = StoreItemType[];
 function App() {
   //What items are available to buy?
   const [store, setStore] = useState([
@@ -104,20 +111,18 @@ function App() {
   }
   const total = getTotal();
 
-  function increaseItemQuantity(item: any) {
-    const storeCopy = structuredClone(store);
+  function increaseItemQuantity(item: StoreItemType) {
+    const storeCopy: StoreType = structuredClone(store);
 
-    //@ts-ignore
-    const match = storeCopy.find((target) => target.id === item.id);
+    const match = storeCopy.find((target) => target.id === item.id)!;
     match.inCart++;
 
     setStore(storeCopy);
   }
   function decreaseItemQuantity(item: any) {
-    const storeCopy = structuredClone(store);
-    //@ts-ignore
+    const storeCopy: StoreType = structuredClone(store);
 
-    const match = storeCopy.find((target) => target.id === item.id);
+    const match = storeCopy.find((target) => target.id === item.id)!;
     match.inCart--;
 
     setStore(storeCopy);

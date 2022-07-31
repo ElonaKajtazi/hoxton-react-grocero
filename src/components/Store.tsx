@@ -1,4 +1,10 @@
-export function Store({store, increaseItemQuantity}) {
+import { StoreItemType } from "../App";
+
+type Props = {
+  store: StoreItemType[];
+  increaseItemQuantity: (item: StoreItemType) => void;
+};
+export function Store({ store, increaseItemQuantity }: Props) {
   return (
     <header id="store">
       <h1>Grocero</h1>

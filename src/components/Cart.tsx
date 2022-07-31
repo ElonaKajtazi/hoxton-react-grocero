@@ -1,9 +1,17 @@
+import { StoreItemType } from "../App";
+
+type Props = {
+  cart: StoreItemType[];
+  decreaseItemQuantity: (item: StoreItemType) => void;
+  increaseItemQuantity: (item: StoreItemType) => void;
+  total: string;
+};
 export function Cart({
   cart,
   decreaseItemQuantity,
   increaseItemQuantity,
   total,
-}) {
+}: Props) {
   return (
     <main id="cart">
       <h2>Your Cart</h2>
