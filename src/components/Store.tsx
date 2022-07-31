@@ -1,4 +1,5 @@
 import { StoreItemType } from "../App";
+import { StoreItem } from "./StoreItem";
 
 type Props = {
   store: StoreItemType[];
@@ -10,18 +11,7 @@ export function Store({ store, increaseItemQuantity }: Props) {
       <h1>Grocero</h1>
       <ul className="item-list store--item-list">
         {store.map((item) => (
-          <li>
-            <div className="store--item-icon">
-              <img src={item.icon} />
-            </div>
-            <button
-              onClick={function () {
-                increaseItemQuantity(item);
-              }}
-            >
-              Add to cart
-            </button>
-          </li>
+          <StoreItem item={item} increaseItemQuantity={increaseItemQuantity} />
         ))}
       </ul>
     </header>

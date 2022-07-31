@@ -1,4 +1,5 @@
 import { StoreItemType } from "../App";
+import { CartItem } from "./CartItem";
 
 type Props = {
   cart: StoreItemType[];
@@ -19,31 +20,11 @@ export function Cart({
       <div className="cart--item-list-container">
         <ul className="item-list cart--item-list">
           {cart.map((item) => (
-            <li>
-              <img
-                className="cart--item-icon"
-                src={item.icon}
-                alt={item.name}
-              />
-              <p>{item.name}</p>
-              <button
-                className="quantity-btn remove-btn center"
-                onClick={function () {
-                  decreaseItemQuantity(item);
-                }}
-              >
-                -
-              </button>
-              <span className="quantity-text center">{item.inCart}</span>
-              <button
-                className="quantity-btn add-btn center"
-                onClick={function () {
-                  increaseItemQuantity(item);
-                }}
-              >
-                +
-              </button>
-            </li>
+            <CartItem
+              item={item}
+              decreaseItemQuantity={decreaseItemQuantity}
+              increaseItemQuantity={increaseItemQuantity}
+            />
           ))}
         </ul>
       </div>
