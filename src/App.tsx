@@ -3,71 +3,93 @@ import "./index.css";
 import "./App.css";
 
 function App() {
+  //What items are available to buy?
+  const [store, setStore] = useState([
+    {
+      id: 1,
+      name: "beetroot",
+      price: 0.35,
+      inCart: 3,
+      icon: "assets/icons/001-beetroot.svg",
+    },
+    {
+      id: 2,
+      name: "carrot",
+      price: 0.3,
+      inCart: 0,
+      icon: "assets/icons/002-carrot.svg",
+    },
+    {
+      id: 3,
+      name: "apple",
+      price: 0.25,
+      inCart: 0,
+      icon: "assets/icons/003-apple.svg",
+    },
+    {
+      id: 4,
+      name: "apricot",
+      price: 0.2,
+      inCart: 0,
+      icon: "assets/icons/004-apricot.svg",
+    },
+    {
+      id: 5,
+      name: "avocado",
+      price: 0.85,
+      inCart: 0,
+      icon: "assets/icons/005-avocado.svg",
+    },
+    {
+      id: 6,
+      name: "banana",
+      price: 0.55,
+      inCart: 0,
+      icon: "assets/icons/006-bananas.svg",
+    },
+    {
+      id: 7,
+      name: "bell pepper",
+      price: 0.45,
+      inCart: 0,
+      icon: "assets/icons/007-bell-pepper.svg",
+    },
+    {
+      id: 8,
+      name: "berry",
+      price: 0.4,
+      inCart: 0,
+      icon: "assets/icons/008-berry.svg",
+    },
+    {
+      id: 9,
+      name: "blueberry",
+      price: 0.35,
+      inCart: 0,
+      icon: "assets/icons/009-blueberry.svg",
+    },
+    {
+      id: 10,
+      name: "eggplant",
+      price: 0.3,
+      inCart: 0,
+      icon: "assets/icons/010-eggplant.svg",
+    },
+  ]);
+  //What items are in the cart?
   return (
     <div className="App">
       <header id="store">
         <h1>Grocero</h1>
         <ul className="item-list store--item-list">
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/001-beetroot.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/002-carrot.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/003-apple.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/004-apricot.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/005-avocado.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/006-bananas.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/007-bell-pepper.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/008-berry.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/009-blueberry.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
-          <li>
-            <div className="store--item-icon">
-              <img src="assets/icons/010-eggplant.svg" />
-            </div>
-            <button>Add to cart</button>
-          </li>
+          {store.map((item) => (
+            <li>
+              <div className="store--item-icon">
+                <img src={item.icon} />
+              </div>
+              <button>Add to cart</button>
+            </li>
+          ))}
         </ul>
       </header>
 
