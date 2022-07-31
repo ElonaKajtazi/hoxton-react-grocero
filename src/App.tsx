@@ -62,7 +62,7 @@ function App() {
       id: 7,
       name: "bell pepper",
       price: 0.45,
-      inCart: 0,
+      inCart: 8,
       icon: "assets/icons/007-bell-pepper.svg",
     },
     {
@@ -92,6 +92,14 @@ function App() {
     return store.filter((item) => item.inCart > 0);
   }
   const cart = getInCart();
+
+  function total() {
+    let total = 0;
+    for (let item of cart) {
+      total += item.price * item.inCart;
+    }
+    return total;
+  }
   return (
     <div className="App">
       <header id="store">
@@ -132,7 +140,7 @@ function App() {
         <div className="total-section">
           <h3>Total</h3>
           <div>
-            £<span class="total-price">2.80</span>
+            £<span className="total-price">£{total().toFixed(2)}</span>
           </div>
         </div>
       </main>
