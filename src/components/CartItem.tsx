@@ -1,5 +1,6 @@
 import { StoreItemType } from "../App";
 type Props = {
+  item: StoreItemType;
   cart: StoreItemType[];
   decreaseItemQuantity: (item: StoreItemType) => void;
   increaseItemQuantity: (item: StoreItemType) => void;
@@ -8,7 +9,7 @@ export function CartItem({
   item,
   decreaseItemQuantity,
   increaseItemQuantity,
-}: any) {
+}: Props) {
   return (
     <li>
       <img className="cart--item-icon" src={item.icon} alt={item.name} />
